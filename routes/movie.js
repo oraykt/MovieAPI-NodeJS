@@ -30,6 +30,21 @@ router.get("/top10", (req, res) => {
   });
 });
 
+// between
+router.get('/between/:start_year/:end_year', (req, res) => {
+  const { start_year, end_year } = req.params;
+  // lte <= || gte >= || lt < || gt >
+  const promise = Movie.find({ year: { "$gte": parseInt(start_year), "$lte": parseInt(end_year) } });
+  promise.then((movies) => {
+    if (movies) {
+      res.json({ statusCode: res.statusCode, topMovies: movies });
+    }
+  }).catch((err) => {
+    console.error(err);
+    next({ statusCode: res.statusCode, message: err.message });
+  });
+});
+
 router.get("/:movie_id", (req, res, next) => {
   const promise = Movie.findById(req.params.movie_id);
   promise.then((movie) => {
