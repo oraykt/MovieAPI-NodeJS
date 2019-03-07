@@ -22,8 +22,7 @@ const MovieSchema = new Schema({
     },
     director_id: {
         type: Schema.Types.ObjectId,
-        required: true,
-        unique: true
+        unique: false
     }
 });
 
