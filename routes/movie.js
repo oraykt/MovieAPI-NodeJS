@@ -18,6 +18,18 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get("/top10", (req, res) => {
+  const promise = Movie.find({}).limit(10).sort({ imdb_score: -1 });
+  promise.then((movies) => {
+    if (movies) {
+      res.json({ statusCode: res.statusCode, topMovies: movies });
+    }
+  }).catch((err) => {
+    console.error(err);
+    next({ statusCode: res.statusCode, message: err.message });
+  });
+});
+
 router.get("/:movie_id", (req, res, next) => {
   const promise = Movie.findById(req.params.movie_id);
   promise.then((movie) => {
@@ -41,7 +53,7 @@ router.post('/', (req, res, next) => {
   //const { title, category, country, year, imdb_score, director_id } = req.body;
   const promise = new Movie(req.body).save();
   promise.then((movie) => {
-    res.json({ statusCode: res.statusCode, statusCode: res.statusCode, added: movie });
+    res.json({ statusCode: res.statusCode, added: movie });
   }).catch((err) => {
     console.error(err);
     next({ statusCode: res.statusCode, message: err.message });
@@ -68,13 +80,14 @@ router.delete("/:movie_id", (req, res, next) => {
   const promise = Movie.findByIdAndDelete(req.params.movie_id);
   promise.then((movie) => {
     if (movie) {
-      res.json({ statusCode: res.statusCode, statusCode: res.statusCode, deleted: true });
+      res.json({ statusCode: res.statusCode, deleted: true });
     } else {
       next({ statusCode: res.statusCode, message: "The movie was not found!" });
     }
   }).catch((err) => {
     console.error(err);
     next({ statusCode: res.statusCode, message: err.message });
-  })
+  });
 });
+
 module.exports = router;
