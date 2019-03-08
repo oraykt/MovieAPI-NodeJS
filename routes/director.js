@@ -39,8 +39,8 @@ router.get('/', (req, res, next) => {
             }
         }
     ]);
-    promise.then((director) => {
-        res.json(director);
+    promise.then((directors) => {
+        res.json(directors);
     }).catch((err) => {
         res.json(err);
     });
@@ -53,6 +53,22 @@ router.post('/', (req, res) => {
         res.json(director);
     }).catch((error) => {
         res.json(error);
+    });
+});
+
+router.put("/:director_id", (req, res, next) => {
+    const promise = Director.findByIdAndUpdate(
+        req.params.director_id, req.body, { new: true }
+    );
+    promise.then((director) => {
+        if (director) {
+            res.json({ statusCode: res.statusCode, updated: director });
+        } else {
+            next({ statusCode: res.statusCode, message: "The director was not found!" });
+        }
+    }).catch((err) => {
+        console.error(err);
+        next({ statusCode: res.statusCode, message: err.message });
     });
 });
 

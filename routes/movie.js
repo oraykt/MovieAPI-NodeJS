@@ -23,6 +23,8 @@ router.get("/top10", (req, res) => {
   promise.then((movies) => {
     if (movies) {
       res.json({ statusCode: res.statusCode, topMovies: movies });
+    } else {
+      next({ statusCode: res.statusCode, message: "There are not any movies!" });
     }
   }).catch((err) => {
     console.error(err);
@@ -31,13 +33,15 @@ router.get("/top10", (req, res) => {
 });
 
 // between
-router.get('/between/:start_year/:end_year', (req, res) => {
+router.get('/between/:start_year/:end_year', (req, res, next) => {
   const { start_year, end_year } = req.params;
   // lte <= || gte >= || lt < || gt >
   const promise = Movie.find({ year: { "$gte": parseInt(start_year), "$lte": parseInt(end_year) } });
   promise.then((movies) => {
-    if (movies) {
+    if (movies.length !== 0) {
       res.json({ statusCode: res.statusCode, topMovies: movies });
+    } else {
+      next({ statusCode: res.statusCode, message: `There are not any movies between ${start_year} and ${end_year}` });
     }
   }).catch((err) => {
     console.error(err);
@@ -80,28 +84,20 @@ router.put("/:movie_id", (req, res, next) => {
     req.params.movie_id, req.body, { new: true }
   );
   promise.then((movie) => {
-    if (movie) {
-      res.json({ statusCode: res.statusCode, updated: movie });
-    } else {
-      next({ statusCode: res.statusCode, message: "The movie was not found!" });
-    }
+    res.json({ statusCode: res.statusCode, updated: movie });
   }).catch((err) => {
     console.error(err);
-    next({ statusCode: res.statusCode, message: err.message });
+    next({ statusCode: res.statusCode, message: "The movie was not found!" });
   });
 });
 
 router.delete("/:movie_id", (req, res, next) => {
   const promise = Movie.findByIdAndDelete(req.params.movie_id);
   promise.then((movie) => {
-    if (movie) {
-      res.json({ statusCode: res.statusCode, deleted: true });
-    } else {
-      next({ statusCode: res.statusCode, message: "The movie was not found!" });
-    }
+    res.json({ statusCode: res.statusCode, deleted: true });
   }).catch((err) => {
     console.error(err);
-    next({ statusCode: res.statusCode, message: err.message });
+    next({ statusCode: res.statusCode, message: "The movie was not found!" });
   });
 });
 
