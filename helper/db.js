@@ -5,10 +5,10 @@ module.exports = () => {
     mongoose.set('useCreateIndex', true);
 
     mongoose.connection.on('open', () => {
-        console.log('MongoDB: Connected!');
+        //console.log('MongoDB: Connected!');
     });
     mongoose.connection.on('error', (error) => {
-        console.log('MongoDB: Connection Failed! \n', error);
+        //console.log('MongoDB: Connection Failed! \n', error);
     });
 
     mongoose.Promise = global.Promise;
