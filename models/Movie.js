@@ -10,19 +10,26 @@ const MovieSchema = new Schema({
         type: String,
         required: true
     },
-    country: String,
+    country: {
+        type: String,
+        required: true
+    },
     year: {
         type: Number,
+        required: true,
         default: new Date().getFullYear()
     },
-    imdb_score: Number,
+    imdb_score: {
+        type: Number,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now
     },
     director_id: {
         type: Schema.Types.ObjectId,
-        unique: false
+        required: true
     }
 });
 
