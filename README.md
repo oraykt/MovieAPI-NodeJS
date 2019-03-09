@@ -29,4 +29,6 @@ Develop Restful API with Express and MongoDB
 | /register | `POST` | { username: 'foo', password:'1234' } | Create a new user. |
 | /authenticate | `POST` | { username: 'foo', password:'1234' } | Generate a token. |
 
-enjoy!
+
+https://ktmovieapp.herokuapp.com/
+
