@@ -1,5 +1,7 @@
 # node-movie-api
 Develop Restful API with Express and MongoDB
+https://ktmovieapp.herokuapp.com/
+
 # Movies
 
 | Route | HTTP Verb	 | POST body	 | Description	 |
@@ -28,7 +30,4 @@ Develop Restful API with Express and MongoDB
 | --- | --- | --- | --- |
 | /register | `POST` | { username: 'foo', password:'1234' } | Create a new user. |
 | /authenticate | `POST` | { username: 'foo', password:'1234' } | Generate a token. |
-
-
-https://ktmovieapp.herokuapp.com/
 
