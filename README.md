@@ -1,6 +1,8 @@
-# node-movie-api
-Develop Restful API with Express and MongoDB
-https://ktmovieapp.herokuapp.com/
+# node-movie-api  
+![Build Status](https://travis-ci.org/oraykt/MovieAPI-NodeJS.svg?) <br />
+https://ktmovieapp.herokuapp.com/ <br />
+
+Develop Restful API with Express and MongoDB <br />
 
 # Movies
 
