@@ -1,5 +1,7 @@
 # node-movie-api
 Develop Restful API with Express and MongoDB
+https://ktmovieapp.herokuapp.com/
+
 # Movies
 
 | Route | HTTP Verb	 | POST body	 | Description	 |
@@ -21,7 +23,6 @@ Develop Restful API with Express and MongoDB
 | /api/directors/:director_id | `GET` | Empty | Get a director. |
 | /api/directors/:director_id | `PUT` | {'name':'foo', 'surname':'bar', 'bio': 'lorem'} | Update a director with new info. |
 | /api/directors/:director_id | `DELETE` | Empty | Delete a director. |
-| /api/directors/:director_id/best10movie | `GET` | Empty | The director's top 10 films. |
 
 # Index
 
@@ -30,4 +31,3 @@ Develop Restful API with Express and MongoDB
 | /register | `POST` | { username: 'foo', password:'1234' } | Create a new user. |
 | /authenticate | `POST` | { username: 'foo', password:'1234' } | Generate a token. |
 
-enjoy!
