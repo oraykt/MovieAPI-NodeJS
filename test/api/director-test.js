@@ -91,7 +91,7 @@ describe('/api/directors test', () => {
 
     it('It should delete a director', (done) => {
         chai.request(server)
-            .delete('/api/movies/' + directorId)
+            .delete('/api/directors/' + directorId)
             .set('x-access-token', token)
             .end((err, res) => {
                 res.should.have.status(200);
