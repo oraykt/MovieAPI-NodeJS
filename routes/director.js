@@ -126,7 +126,11 @@ router.put("/:director_id", (req, res, next) => {
 router.delete("/:director_id", (req, res, next) => {
     const promise = Director.findByIdAndDelete(req.params.director_id);
     promise.then((director) => {
-        res.json({ statusCode: res.statusCode, deleted: true });
+        if (director)
+            res.json({ statusCode: res.statusCode, deleted: true });
+        else {
+            next({ statusCode: res.statusCode, message: "The director was not found!" });
+        }
     }).catch((err) => {
         console.error(err);
         next({ statusCode: res.statusCode, message: "The director was not found!" });
