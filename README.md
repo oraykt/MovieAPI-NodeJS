@@ -1,6 +1,6 @@
 # node-movie-api  
 <a href="https://travis-ci.org/oraykt/MovieAPI-NodeJS/">![Build Status](https://travis-ci.org/oraykt/MovieAPI-NodeJS.svg?branch=master) <a/><br /> <br /> 
-https://ktmovieapp.herokuapp.com/ <br />
+https://kt-movie-app.herokuapp.com/ <br />
 
 Develop Restful API with Express and MongoDB <br />
 
